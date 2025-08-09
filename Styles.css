@@ -187,3 +187,42 @@ body {
 #overlay #form input[type="checkbox"]:checked::before {
     transform: scale(0.75);
 }
+
+/* Book delete button */
+
+#content .book button {
+    appearance: none;
+    cursor: pointer;
+    height: 1.5em;
+    padding: 0.5em;
+    background-color: var(--red);
+    border-radius: 0.2em;
+    border: none;
+    outline: none;
+}
+
+#content .book button:focus-visible {
+    background-color: var(--focus-col);
+}
+
+/* Book container to delete an item without the need to rerender the list */
+
+#content .book {
+    display: contents;
+}
+
+/* Add book overlay */
+
+#overlay {
+    display: none;
+    place-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    color: var(--text-col);
+    background-color: rgba(0, 0, 0, 0.2);
+    z-index: 2;
+}
+
