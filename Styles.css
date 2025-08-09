@@ -86,3 +86,57 @@ body {
 }
 
 /* Content Container */
+
+#content {
+    display: grid;
+    align-content: start;
+    grid-template-columns: auto 1fr 1fr auto;
+    gap: 0.1rem;
+    padding: 2rem;
+    margin: 5vw auto;
+    width: min(90vw, 80rem);
+    border-radius: 2rem;
+    background-color: var(--col-2);
+    border: solid thin var(--border-col);
+}
+
+/* Book list header with sort button */
+
+#content > div:nth-child(-n+5) {
+    display: flex;
+    gap: 0.3rem;
+    align-items: center;
+}
+
+#content label {
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#content label + button {
+    position: relative;
+    appearance: none;
+    cursor: pointer;
+    height: 1.2em;
+    width: 1.2em;
+    border-radius: 0.2em;
+    background-color: var(--col-2);
+    border: none;
+    outline: none;
+}
+
+#content label + button:focus-visible {
+    background-color: var(--focus-col);
+}
+
+#content label + button.checked-1::before {
+    transform: rotate(-90deg);
+    background-color: var(--text-col);
+}
+
+#content label + button.checked-2::before {
+    transform: rotate(90deg);
+    background-color: var(--text-col);
+}
+
+/* Book parting line / hr */
