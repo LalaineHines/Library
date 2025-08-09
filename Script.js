@@ -150,3 +150,79 @@ Object.values(listHeader).forEach((header) => {
 });
 
 // Add new book to library
+popup.showBtn.addEventListener('click', () => {
+    popup.overlay.style.display ='grid';
+});
+
+popup.closedBtn.addEventListener('click', () => {
+    popup.overlay.style.display = null;
+});
+
+popup.addBtn.addEventListener('click', () => {
+    let valid = true;
+    if (!popup.input.title.value) {
+        popup.input.title.parentElement.dataset.msg = 'Please enter a title';
+        valid = false;
+    } else {
+        popup.input.title.parentElement.dataset.msg = '';
+    }
+    if (!popup.input.author.value) {
+        popup.input.author.parentElement.dataset.msg = 'Please enter an author';
+        valid = false;
+    } else {
+        popup.input.author.parentElement.dataset.msg = '';
+    }
+    if (!popup.input.pages.value) {
+        popup.input.pages.parentElement.dataset.msg = 'Please enter a page number';
+        valid = false;
+    } else if (isNaN(popup.input.pages.value)) {
+        popup.input.pages.parentElement.dataset.msg = 'Please enter a valid number';
+        value = false;
+    } else if (popup.input.pages.value < 0) {
+        popup.input.pages.parentElement.dataset.msg = 'Please enter a positive number';
+        valid = false;
+    } else {
+        popup.input.pages.parentElement.dataset.msg = '';
+    }
+    if (valid) {
+        const book = new Book(
+            popup.input.title.value,
+            popup.input.author.value,
+            popup.input.pages.value,
+            popup.input.checkbox.checked,
+        );
+        myLibrary.push(book);
+        displayLibrary();
+        Object.values(popup.input).forEach((x) => {
+            if (x !== popup.input.checkbox) {
+                x.value = '';
+                x.parentElement.dataset.msg = '';
+            } else {
+                x.checked = false;
+            }
+        });
+        popup.overlay.style.display = null;
+    }
+});
+
+const tmp1 = localStorage.getItem('myLibrary');
+const tmp2 = localStorage.getItem('sortBy');
+if (tmp1) {
+    myLibrary = JSON.parse(tmp1);
+} else {
+    myLibrary.push(
+        new Book('The Hobbit', 'J.R.R. Tolkien', 295, true),
+    );
+    myLibrary.push(
+        new Book("The Catcher in the Rye", 'J.D. Salinger', 220, false),
+    );
+    localStorage.setItem('myLibrary', JSON.stringify(myLibrary));
+}
+if (tmp2) sortBy = JSON.parse(tmp2);
+
+listHeader[sortBy[0]].classList.add(
+    (sortBy[1] === 'desc') ? 'checked-1' : 'checked-2',
+);
+
+sortLibrary();
+displayLibrary();
