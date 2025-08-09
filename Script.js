@@ -47,3 +47,24 @@ const checkAllTheSame = function checkAllTheSame () {
 };
 
 // Sort myLibrary
+const sortLibrary = function sortLibrary () {
+    if (checkAllTheSame()) return;
+    if (sortBy[0] === 'id') {
+        myLibrary.sort((a, b) => b.id - a.id);
+    } else if (sortBy[0] === 'pages') {
+        myLibrary.sort((a, b) => a.pages - b.pages);
+    } else if (sortBy[0] === 'author') {
+        myLibrary.sort((a, b) => (
+            (a.author.toLowerCase() > b.author.toLowerCase()) ? 1 : -1
+        ));
+    } else if (sortBy[0] === 'titles') {
+        myLibrary.sort((a, b) => (
+            (a.title.toLowerCase() > b.title.toLowerCase()) ? 1 : -1
+        ));
+    } else if (sortBy[0] === 'read') {
+        myLibrary.sort((a, b) => ((a.read < b.read) ? -1 : 1));
+    }
+    if (sortBy[1] === 'desc') myLibrary.reverse();
+};
+
+// Remove all check classes
