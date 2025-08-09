@@ -131,3 +131,22 @@ const displayLibrary = function displayLibraryOnPage () {
 };
 
 // Sort list header
+Object.values(listHeader).forEach((header) => {
+    header.addEventListener('click', (e) => {
+        rmvAll(e.target.id);
+        if (!e.target.classList.value) {
+            e.target.className = 'checked-1';
+            sortBy = [e.target.id, 'desc'];
+        } else if (e.target.className === 'checked-1') {
+            e.target.className = 'checked-2';
+            sortBy = [e.target.id, 'asc'];
+        } else if (e.target.className === 'checked-2') {
+            e.target.className = 'checked-1';
+            sortBy = [e.target.id, 'desc'];
+        }
+        sortLibrary();
+        displayLibrary();
+    });
+});
+
+// Add new book to library
