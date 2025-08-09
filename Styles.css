@@ -311,3 +311,33 @@ body {
     z-index: 2;
 }
 
+/* Book status/read checkbox */
+
+#overlay #form div {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+#overlay #form input[type="checkbox"] {
+    height: 1rem;
+    width: 1rem;
+}
+
+#overlay #form #add {
+    appearance: none;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    border: var(--border-col) thin solid;
+    border-radius: 0.2rem;
+    padding: 0.2rem 0.5rem;
+    font-size: 1rem;
+    background-color: var(--col-2);
+    color: var(--text-col);
+}
+
+#overlay #form #add:focus-visible,
+#overlay #form #add:hover {
+    border-color: var(--text-col);
+}
