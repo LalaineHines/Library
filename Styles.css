@@ -275,3 +275,39 @@ body {
 #overlay #form #close:focus-visible {
     background-color: var(--focus-col);
 }
+
+/* Add book text input */
+
+#overlay #form label {
+    font-weight: bold;
+}
+
+#overlay #form input[type="text"] {
+    position: relative;
+    box-sizing: content-box;
+    appearance: none;
+    border: none;
+    outline: none;
+    width: 15rem;
+    padding: 0.2rem 0;
+    font-size: 1rem;
+    border-bottom: var(--border-col) solid thin;
+    background-color: var(--col-2);
+    color: var(--text-col);
+}
+
+#overlay #form label + span {
+    position: relative;
+}
+
+#overlay #form label + span::before {
+    content: attr(data-msg);
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    transform: translateY(100%);
+    font-size: 0.8rem;
+    color: var(--red);
+    z-index: 2;
+}
+
